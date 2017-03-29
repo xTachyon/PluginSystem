@@ -5,11 +5,8 @@ void Server::loadPlugin(const std::string& path) {
 }
 
 void Server::loadPlugin(const char* path) {
-  plugins.push_back({});
-  DLLKeeper& keeper = plugins.back().first;
-  std::unique_ptr<Plugin>& ptr = plugins.back().second;
-  
-  keeper = DLLKeeper(path);
+  DLLKeeper keeper(path);
+  std::unique_ptr<Plugin> ptr;
   
   if (keeper) {
     CreateFunctionPtr init = keeper.get("plugin_init");
@@ -18,7 +15,11 @@ void Server::loadPlugin(const char* path) {
     }
   }
   
-  if (!ptr) {
-    plugins.pop_back();
+  if (ptr) {
+    plugins.emplace_back(std::move(keeper), std::move(ptr));
   }
+}
+
+void Server::callOne() {
+  plugins.front().second->onEnable();
 }

@@ -6,12 +6,11 @@
 #include "api.hpp"
 
 class MyPlugin : public Plugin {
-
+  void onEnable() override;
 };
 
 extern "C" {
     void MY_API_EXPORT plugin_init(void* ptr);
-    void MY_API_EXPORT plugin_term(void* ptr);
 }
 
 #endif // PLUGIN_HPP
