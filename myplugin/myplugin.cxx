@@ -1,5 +1,5 @@
 #include <list>
-#include "plugin.hpp"
+#include "myplugin.hpp"
 
 void plugin_init(void* ptr) {
   PluginUniquePtr& plugin = *reinterpret_cast<PluginUniquePtr*>(ptr);

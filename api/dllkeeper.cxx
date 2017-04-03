@@ -20,6 +20,10 @@ DLLKeeper::~DLLKeeper() {
   }
 }
 
+CreateFunctionPtr DLLKeeper::get(const std::string& name) {
+  return get(name.c_str());
+}
+
 CreateFunctionPtr DLLKeeper::get(const char* name) {
   CreateFunctionPtr ptr = nullptr;
   

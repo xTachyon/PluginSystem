@@ -1,4 +1,4 @@
-#include "api.hpp"
+#include "server.hpp"
 
 void Server::loadPlugin(const std::string& path) {
   loadPlugin(path.c_str());

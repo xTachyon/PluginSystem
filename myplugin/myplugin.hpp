@@ -3,14 +3,14 @@
 
 #define EXPORTS_API
 
-#include "api.hpp"
+#include "../api/api.hpp"
 
 class MyPlugin : public Plugin {
   void onEnable() override;
 };
 
 extern "C" {
-    void MY_API_EXPORT plugin_init(void* ptr);
+    void REDI_API_EXPORT plugin_init(void* ptr);
 }
 
 #endif // PLUGIN_HPP

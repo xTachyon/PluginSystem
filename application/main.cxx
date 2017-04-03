@@ -1,4 +1,4 @@
-#include "api.hpp"
+#include "server.hpp"
 
 int main() {
   Server s;
