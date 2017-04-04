@@ -30,4 +30,4 @@ private:
   HINSTANCE dll;
 };
 
-#endif //MAIN_LIBRARYKEEPER_HPP
+#endif // MAIN_LIBRARYKEEPER_HPP

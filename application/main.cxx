@@ -3,8 +3,7 @@
 int main() {
   Server s;
   
-  s.loadPlugin("E:\\Info\\projects\\current\\plugin\\cmake-build-debug\\plugin.dll");
-  s.callOne();
-  
+  s.loadPlugin("E:\\repositories\\PluginSystem\\cmake-build-debug\\myplugin\\myplugin.dll");
+
   return 0;
 }

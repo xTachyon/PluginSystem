@@ -14,13 +14,19 @@
 #endif
 
 class Plugin {
-  public:
-  virtual ~Plugin();
-  
-  virtual void onEnable();
-};
+public:
+  virtual ~Plugin() = 0;
 
-inline Plugin::~Plugin() {}
+  virtual void onEnable();
+	virtual void onDisable();
+
+	bool isEnabled() const { return enabled; }
+
+private:
+	friend class Server;
+
+	bool enabled{};
+};
 
 using PluginUniquePtr = std::unique_ptr<Plugin>;
 

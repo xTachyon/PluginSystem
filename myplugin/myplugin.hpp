@@ -3,7 +3,7 @@
 
 #define EXPORTS_API
 
-#include "../api/api.hpp"
+#include "../api/pluginbase.hpp"
 
 class MyPlugin : public Plugin {
   void onEnable() override;
