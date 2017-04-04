@@ -1,8 +1,6 @@
 #ifndef PLUGIN_HPP
 #define PLUGIN_HPP
 
-#define EXPORTS_API
-
 #include "../api/pluginbase.hpp"
 
 class MyPlugin : public Plugin {

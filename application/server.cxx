@@ -4,11 +4,11 @@ Server::~Server() {
 	unloadAllPlugins();
 }
 
-void Server::loadPlugin(const std::string& path) {
-  loadPlugin(path.c_str());
+PluginLoadResult Server::loadPlugin(const std::string& path) {
+  return loadPlugin(path.c_str());
 }
 
-void Server::loadPlugin(const char* path) {
+PluginLoadResult Server::loadPlugin(const char* path) {
   DLLKeeper keeper(path);
   std::unique_ptr<Plugin> plugin;
   
@@ -16,13 +16,21 @@ void Server::loadPlugin(const char* path) {
     CreateFunctionPtr init = keeper.get("plugin_init");
     if (init) {
       init(reinterpret_cast<void*>(&plugin));
+    } else {
+      return PluginLoadResult::FunctionNotFound;
     }
+  } else {
+    return PluginLoadResult::InvalidLibrary;
   }
 
   if (plugin) {
     plugin->onEnable();
     plugins.emplace_back(std::move(keeper), std::move(plugin));
+  } else {
+    return PluginLoadResult::InstanceNotCreated;
   }
+  
+  return PluginLoadResult::Success;
 }
 
 void Server::loadPluginsFromFolder(const std::string& path) {

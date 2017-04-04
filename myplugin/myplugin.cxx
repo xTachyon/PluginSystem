@@ -9,5 +9,4 @@ void plugin_init(void* ptr) {
 
 void MyPlugin::onEnable() {
   Plugin::onEnable();
-  std::cout << "derived class onEnable called\n";
 }

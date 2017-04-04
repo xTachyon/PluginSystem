@@ -5,3 +5,4 @@ add_library(myplugin MODULE
 
 target_link_libraries(myplugin api)
 set_target_properties(myplugin PROPERTIES PREFIX "")
+add_definitions(-DEXPORTS_API)

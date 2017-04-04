@@ -1,7 +1,6 @@
-#ifndef API_HPP
-#define API_HPP
+#ifndef REDI_PLUGIN_API_HPP
+#define REDI_PLUGIN_API_HPP
 
-#include <iostream>
 #include <memory>
 #include <list>
 #include <utility>
@@ -30,4 +29,4 @@ private:
 
 using PluginUniquePtr = std::unique_ptr<Plugin>;
 
-#endif // API_HPP
+#endif // REDI_PLUGIN_API_HPP
