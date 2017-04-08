@@ -6,10 +6,25 @@
 #include <utility>
 #include "dllkeeper.hpp"
 
-#ifdef EXPORTS_API
-#define REDI_API_EXPORT __declspec(dllexport)
+#if defined(_MSC_VER)
+//  Microsoft
+    #define REDI_EXPORT __declspec(dllexport)
+    #define REDI_IMPORT __declspec(dllimport)
+#elif defined(__GNUC__)
+//  GCC
+#define REDI_EXPORT __attribute__((visibility("default")))
+#define REDI_IMPORT
 #else
-#define REDI_API_EXPORT __declspec(dllimport)
+//  do nothing and hope for the best?
+    #define REDI_EXPORT
+    #define REDI_IMPORT
+    #pragma warning Unknown dynamic link import/export semantics.
+#endif
+
+#ifdef EXPORTS_API
+#define REDI_API_EXPORT REDI_EXPORT
+#else
+#define REDI_API_EXPORT REDI_IMPORT
 #endif
 
 class Plugin {

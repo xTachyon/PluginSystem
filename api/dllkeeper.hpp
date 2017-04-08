@@ -3,9 +3,13 @@
 
 #include <string>
 
+#ifdef REDI_WINDOWS
 #ifndef _WINDEF_
 class HINSTANCE__; // Forward or never
 typedef HINSTANCE__* HINSTANCE;
+#endif
+#else
+
 #endif
 
 using CreateFunctionPtr = void (*)(void*);
@@ -27,7 +31,11 @@ public:
   CreateFunctionPtr get(const char* name);
   
 private:
+#ifdef REDI_WINDOWS
   HINSTANCE dll;
+#else
+  void* dll;
+#endif
 };
 
 #endif // MAIN_LIBRARYKEEPER_HPP
